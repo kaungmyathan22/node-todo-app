@@ -55,7 +55,7 @@ app.get("/", function (req, res) {
                 } else {
                     console.log("Successfully added items");
 
-                    response.redirect("/");
+                    res.redirect("/");
                 }
             });
 
