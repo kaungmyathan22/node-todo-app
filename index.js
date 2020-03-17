@@ -16,11 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/todolist", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://arkarhtethan:testpassword@cluster0-netvj.mongodb.net/test?retryWrites=true&w=majority/todolist", { db: { safe: false }, useNewUrlParser: true, useUnifiedTopology: true });
 
-const itemScheme = {
+const itemScheme = new mongoose.Schema({
     name: String,
-};
+},
+    {
+        writeConcern: {
+            w: 'majority',
+        }
+    });
 
 const Item = mongoose.model("Item", itemScheme);
 
